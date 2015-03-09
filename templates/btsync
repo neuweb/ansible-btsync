@@ -12,12 +12,12 @@ unset TMPDIR
 # Check that networking is up.
 [ ${NETWORKING} = "no" ] && exit 1
 # Check that the config file exists.
-[ -f {{ btsync_config_file }} ] || exit 6
+[ -f /home/webserv/.sync/config.json ] || exit 6
 
 RETVAL=0
 BTUSER="{{ btsync_user }}"
 BTSYNCEXEC="/usr/local/bin/btsync"
-BTSYNCOPTIONS="--config {{ btsync_config_file }}"
+BTSYNCOPTIONS="--config /home/webserv/.sync/config.json"
 BTPID="/var/run/btsync.pid"
 start() {
         KIND="BittorrentSync"
