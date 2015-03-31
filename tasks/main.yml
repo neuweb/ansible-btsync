@@ -30,3 +30,15 @@
   file: path={{ item.path }} recurse=yes state=directory owner={{ btsync_user }} group={{ btsync_user }} mode=700
   with_items: btsync_shared_folders
   when: btsync_shared_folders is defined
+
+#setting facts to get around Tower:
+
+- name: Define QA btsync_shared_folders:
+  set_fact:
+    btsync_shared_folders: "{{ QA_btsync_shared_folders | list }}"
+  when: cluster_environment == "QA"
+
+- name: Define PR btsync_shared_folders:
+  set_fact:
+    btsync_shared_folders: "{{ PR_btsync_shared_folders | list }}"
+  when: cluster_environment == "PR"
