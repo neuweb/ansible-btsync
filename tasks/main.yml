@@ -1,17 +1,5 @@
 ---
 
-#setting facts to get around Tower:
-
-- name: Define QA btsync_shared_folders
-  set_fact:
-    btsync_shared_folders: "{{ QA_btsync_shared_folders }}"
-  when: cluster_environment == "QA"
-
-- name: Define PR btsync_shared_folders
-  set_fact:
-    btsync_shared_folders: "{{ PR_btsync_shared_folders }}"
-  when: cluster_environment == "PR"
-  
 - name: download
   get_url: url="{{ btsync_url[ansible_architecture] }}"
            dest=/tmp/btsync.tar.gz
