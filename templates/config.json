@@ -1,11 +1,13 @@
 {
-"device_name": "btsync_{{ btsync_user }}",
+"device_name": "{{ ansible_hostname }}",
 "listening_port": {{ btsync_port }},
 "storage_path": "/home/{{ btsync_user }}/.sync",
 "check_for_updates": false,
 "use_upnp": {{btsync_upnp|lower}},
 "download_limit": 0,
 "upload_limit": 0,
+​"lan_encrypt_data": true,
+"lan_use_tcp": true,
 "webui": {
     {% if btsync_webui.get('api_key') %}
     "api_key"  : "{{ btsync_webui.api_key }}",
